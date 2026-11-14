@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>团队任务看板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>团队任务看板</h1>
+  </header>
+  <main>
+    <section class="column" id="col-todo" data-status="todo">
+      <h2>待办</h2>
+      <div class="task-list"></div>
+    </section>
+    <section class="column" id="col-doing" data-status="doing">
+      <h2>进行中</h2>
+      <div class="task-list"></div>
+    </section>
+    <section class="column" id="col-done" data-status="done">
+      <h2>完成</h2>
+      <div class="task-list"></div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
