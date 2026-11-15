@@ -12,6 +12,8 @@ function render() {
     tasks.filter(t => t.status === status).forEach(task => {
       const card = document.createElement('div');
       card.className = 'task-card';
+      card.draggable = true;
+      card.dataset.id = task.id;
       const delBtn = document.createElement('button');
       delBtn.className = 'delete-btn';
       delBtn.textContent = '删除';
@@ -44,5 +46,31 @@ function deleteTask(id) {
   saveTasks();
   render();
 }
+
+// ===== 功能：拖拽任务卡片更新状态 =====
+document.querySelectorAll('.task-list').forEach(list => {
+  list.addEventListener('dragover', e => {
+    e.preventDefault();
+    list.classList.add('drag-over');
+  });
+  list.addEventListener('dragleave', () => list.classList.remove('drag-over'));
+  list.addEventListener('drop', e => {
+    e.preventDefault();
+    list.classList.remove('drag-over');
+    const id = Number(e.dataTransfer.getData('text/plain'));
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+      task.status = list.parentElement.dataset.status;
+      saveTasks();
+      render();
+    }
+  });
+});
+
+// 拖拽开始时记录被拖卡片 id
+document.addEventListener('dragstart', e => {
+  const card = e.target.closest('.task-card');
+  if (card) e.dataTransfer.setData('text/plain', card.dataset.id);
+});
 
 render();
