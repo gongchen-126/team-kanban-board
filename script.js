@@ -20,4 +20,21 @@ function render() {
   });
 }
 
+document.getElementById('task-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const input = document.getElementById('task-input');
+  const status = document.getElementById('task-status').value;
+  const title = input.value.trim();
+  if (!title) return;
+  tasks.push({
+    id: Date.now(),
+    title: title,
+    status: status
+  });
+  saveTasks();
+  render();
+  input.value = '';
+  input.focus();
+});
+
 render();
