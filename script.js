@@ -12,7 +12,7 @@ function render() {
     tasks.filter(t => t.status === status).forEach(task => {
       const card = document.createElement('div');
       card.className = 'task-card';
-            const delBtn = document.createElement('button');
+      const delBtn = document.createElement('button');
       delBtn.className = 'delete-btn';
       delBtn.textContent = '删除';
       delBtn.addEventListener('click', () => deleteTask(task.id));
